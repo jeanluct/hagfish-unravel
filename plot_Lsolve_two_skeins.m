@@ -16,7 +16,7 @@ r = 1;                     % thread radius (microm)
 eta = 1;                   % thread packing fraction in skein
 dLmax = 4/3*R0^3*eta/r^2;  % maximum length added to L0 (Lmax = L0+dLmax)
 Lmax = L0 + dLmax;
-smiley = 10;
+P = 10;
 
 % Length and time scale.
 lambda = 10;  % 10 s
@@ -29,7 +29,7 @@ figure(1)
 clf
 
 % Solve for the two skeins case, converting to dimensionless units.
-[t,L] = Lsolve_two_skeins(m,smiley,L0/R0,dLmax/R0);
+[t,L] = Lsolve_two_skeins(m,P,L0/R0,dLmax/R0);
 % Convert back to dimensional units.
 t = t*tsc; L = L*lsc;
 

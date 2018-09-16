@@ -1,4 +1,4 @@
-= hagfish-unravel
+# hagfish-unravel
 
 This repository contains Matlab code used in the paper [_Unraveling
 hagfish slime_][1] by Gaurav Chaudhary, Randy Ewoldt, and Jean-Luc

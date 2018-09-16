@@ -16,7 +16,7 @@ r = 1;                     % thread radius (microm)
 eta = 1;                   % thread packing fraction in skein
 dLmax = 4/3*R0^3*eta/r^2;  % maximum length added to L0 (Lmax = L0+dLmax)
 Lmax = L0 + dLmax;
-smiley = 10;
+P = 10;
 
 % Length and time scale.
 U = 1e6;  % 1 m/s
@@ -29,7 +29,7 @@ figure(1)
 clf
 
 % Solve for the pinned thread case, converting to dimensionless units.
-[t,L] = Lsolve_pinned_thread(m,smiley,L0/R0,dLmax/R0);
+[t,L] = Lsolve_pinned_thread(m,P,L0/R0,dLmax/R0);
 % Convert back to dimensional units.
 t = t*tsc; L = L*lsc;
 
@@ -48,18 +48,18 @@ hold off
 %print -dpdf Lsolve_pinned_thread
 
 figure(2)
-ell = (Lmax - L)/lsc; ell = ell(1:end-1);
+tau = (Lmax - L)/lsc; tau = tau(1:end-1);
 T = (t(end) - t)/tsc; T = T(1:end-1);
 mm = (3*m-1)/(3*m);
-C = (smiley*(R0/(Lmax - L0))^(1/3))^(1/m);
-ellT = (mm*C*T).^(1/mm);
-loglog(T,ell,'k.-')
+C = (P*(R0/(Lmax - L0))^(1/3))^(1/m);
+tauT = (mm*C*T).^(1/mm);
+loglog(T,tau,'k.-')
 hold on
-loglog(T,ellT,'b--')
+loglog(T,tauT,'b--')
 hold off
 pbaspect([1 .7 1])
 xlabel('$T$',attrib{:})
-ylabel('$\ell$',attrib{:})
+ylabel('$\tau$',attrib{:})
 set(gca,attrib{3:end})
 axis tight
-ylim([min(ell) max(ell)])
+ylim([min(tau) max(tau)])

@@ -15,7 +15,7 @@ r = 1;                     % thread radius (microm)
 eta = 1;                   % thread packing fraction in skein
 dLmax = 4/3*R0^3*eta/r^2;  % maximum length added to L0 (Lmax = L0+dLmax)
 Lmax = L0 + dLmax;
-smiley = .5;
+P = .5;
 
 % Length and time scale.
 U = 1e6;  % 1 m/s
@@ -28,7 +28,7 @@ figure(1)
 clf
 
 % Solve for the pinned skein case, converting to dimensionless units.
-[t,L] = Lsolve_pinned_skein_fishflow(m,smiley,r/L0,dLmax/L0);
+[t,L] = Lsolve_pinned_skein_fishflow(m,P,r/L0,dLmax/L0);
 % Convert back to dimensional units.
 t = t*tsc; L = L*lsc;
 

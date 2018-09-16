@@ -1,6 +1,6 @@
-function [t,L,RR0] = Lsolve_pinned_skein(m,smiley,r,dLmax,unfrac)
+function [t,L,RR0] = Lsolve_pinned_skein(m,P,r,dLmax,unfrac)
 
-% m, smiley are dimensionless.
+% m, P are dimensionless.
 % r, dLmax scaled by L0.
 % unfrac is a fraction in (0,1] denoting the unraveled thread fraction at
 % which to stop.
@@ -9,8 +9,8 @@ if nargin < 5, unfrac = 1; end
 L0 = 1;
 tmax = inf;
 
-f = @(t,L) rhs(t,L,m,smiley,r,dLmax,unfrac);
-fe = @(t,L) events(t,L,m,smiley,r,dLmax,unfrac);
+f = @(t,L) rhs(t,L,m,P,r,dLmax,unfrac);
+fe = @(t,L) events(t,L,m,P,r,dLmax,unfrac);
 
 opts = odeset('Events',fe,'NonNegative',1,'RelTol',1e-6,'AbsTol',1e-6);
 
@@ -20,7 +20,7 @@ opts = odeset('Events',fe,'NonNegative',1,'RelTol',1e-6,'AbsTol',1e-6);
 RR0 = nthroot(1 - (L-L0)/dLmax,3);
 
 % =========================================================================
-function dL = rhs(t,L,m,smiley,r,dLmax,unfrac)
+function dL = rhs(t,L,m,P,r,dLmax,unfrac)
 
 % Slendermess parameter (this is the only place we use r directly).
 delta = -1/log((r/L)^2*exp(1));
@@ -30,7 +30,7 @@ if delta < 0
 end
 
 % The thread equation to solve for x = dL/dt.
-f = @(x) (x.^m + smiley*L*delta*(x - 1));
+f = @(x) (x.^m + P*L*delta*(x - 1));
 
 dL = fsolve(f,1,optimset('Display','off','TolX',1e-15));
 
@@ -43,7 +43,7 @@ if dL < 0
 end
 
 % =========================================================================
-function [value,isterm,direc] = events(t,L,m,smiley,r,dLmax,unfrac)
+function [value,isterm,direc] = events(t,L,m,P,r,dLmax,unfrac)
 
 L0 = 1;
 
