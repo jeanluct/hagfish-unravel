@@ -5,9 +5,10 @@ hagfish slime_][1] by Gaurav Chaudhary, Randy Ewoldt, and Jean-Luc
 Thiffeault.
 
 There are 5 different cases considered, and for each there is a Matlab
-file `Lsolve_<case>.m` to compute the solution for the thread length
-`L(t)`, and a corresponding file `plot_Lsolve_<case>.m` that calls the
-function and plots the results.  The 5 cases are
+function `Lsolve_<case>.m` to compute the solution for the unraveled
+thread length `L(t)`, and a corresponding script
+`plot_Lsolve_<case>.m` that calls the function and plots the results.
+The 5 cases are
 
 * `Lsolve_pinned_thread.m`: Section II.A of the paper.
 
