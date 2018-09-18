@@ -21,7 +21,7 @@ The 5 cases are
 * `Lsolve_pinned_skein_fishflow.m`: Section III of the Supplementary
   Information.
 
-[1]: http://arxiv.org/abs/1809.xxxxx
+[1]: http://arxiv.org/abs/1809.05914
 [2]: https://ewoldt.mechanical.illinois.edu/people/gchaudhary/
 [3]: https://ewoldt.mechanical.illinois.edu/people/randy-h-ewoldt/
 [4]: http://www.math.wisc.edu/~jeanluc/
